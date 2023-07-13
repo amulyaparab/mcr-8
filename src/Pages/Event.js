@@ -65,15 +65,17 @@ export const Event = () => {
           <p>₹ {findEvent?.price}</p>
         </div>
         {findEvent.speakers.length ? (
-          <div className="speakers">
+          <div>
             <h2>Speakers:</h2>
-            {findEvent?.speakers?.map(({ name, image, designation }) => (
-              <div className="speaker">
-                <img src={image} alt={name} />
-                <p>{name}</p>
-                <p>{designation}</p>
-              </div>
-            ))}
+            <div className="speakers">
+              {findEvent?.speakers?.map(({ name, image, designation }) => (
+                <div className="speaker">
+                  <img src={image} alt={name} />
+                  <p>{name}</p>
+                  <p>{designation}</p>
+                </div>
+              ))}
+            </div>
           </div>
         ) : null}
         {!isEventOld && (

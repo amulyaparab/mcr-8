@@ -98,11 +98,14 @@ nav input {
 }
 .speakers {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .speaker {
   width: 100px;
-  height: 100px;
-  padding: 5rem 0;
+  height: auto;
+  padding: 2rem 0;
+  line-height: 1rem;
 }
 .speaker img {
   height: auto;
@@ -119,7 +122,13 @@ nav input {
 .side-info {
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: 2rem;
+  background-color: #ffd2d0;
+  width: 30%;
+  height: 50%;
+  margin: 3rem;
+  padding: 4rem;
+  border-radius: 10px;
 }
 button {
   background-color: #ff6962;
