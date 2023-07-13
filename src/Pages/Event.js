@@ -8,8 +8,23 @@ export const Event = () => {
   const { showRSVP, setShowRSVP, state } = useData();
   const findEvent = state.filteredData.find((event) => event.id === eventId);
   const date = new Date(findEvent?.eventEndTime);
-  const currDate = new Date();
 
+  const currDate = new Date();
+  const endDay = date?.toLocaleDateString("en-US", { weekday: "long" });
+  const endMonth = date?.toLocaleDateString("en-US", { month: "long" });
+  const endDateNumber = date?.getDate();
+  const endYear = date?.getFullYear();
+  const endTime = date?.toLocaleTimeString("en-US", {
+    timeStyle: "short",
+  });
+  const startDate = new Date(findEvent?.eventStartTime);
+  const startDay = startDate?.toLocaleDateString("en-US", { weekday: "long" });
+  const startMonth = startDate?.toLocaleDateString("en-US", { month: "long" });
+  const startDateNumber = startDate?.getDate();
+  const startYear = startDate?.getFullYear();
+  const startTime = startDate?.toLocaleTimeString("en-US", {
+    timeStyle: "short",
+  });
   const [isEventOld, setIsEventOld] = useState(false);
   useEffect(() => {
     if (date < currDate) {
@@ -40,7 +55,8 @@ export const Event = () => {
       <div className="side-info">
         <div>
           <p>
-            {findEvent?.eventStartTime} to {findEvent?.eventEndTime}
+            {startDay} {startDateNumber} {startMonth} {startYear} {startTime} to{" "}
+            {endDay} {endDateNumber} {endMonth} {endYear} {endTime}
           </p>
           <p>{findEvent?.address}</p>
           <p>₹ {findEvent?.price}</p>
