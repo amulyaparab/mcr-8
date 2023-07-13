@@ -56,12 +56,18 @@ export const Event = () => {
         ))}
       </div>
       <div className="side-info">
-        <div>
+        <div className="info">
           <p>
+            {" "}
+            <i class="fa-solid fa-calendar"></i>
             {startDay} {startDateNumber} {startMonth} {startYear} {startTime} to{" "}
             {endDay} {endDateNumber} {endMonth} {endYear} {endTime}
           </p>
-          <p>{findEvent?.address}</p>
+          <p>
+            {" "}
+            <i class="fa-solid fa-location-dot"></i>
+            {findEvent?.address?.length ? findEvent?.address : "Online"}
+          </p>
           <p>₹ {findEvent?.price}</p>
         </div>
         {findEvent.speakers.length ? (
