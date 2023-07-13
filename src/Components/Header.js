@@ -7,7 +7,12 @@ export const Header = () => {
   const navigate = useNavigate();
   return (
     <nav>
-      <img src={meetup} alt="meetup" onClick={() => navigate("/")} />
+      <img
+        src={meetup}
+        alt="meetup"
+        onClick={() => navigate("/")}
+        className="cursor"
+      />
       <input
         placeholder="Search by title and tags"
         onChange={(event) =>

@@ -23,30 +23,8 @@ export const Home = () => {
       </div>
       <div className="events">
         {state.filteredData.map(
-          ({
-            id,
-            title,
-            eventStartTime,
-            eventEndTime,
-            location,
-            address,
-            eventThumbnail,
-            eventDescription,
-            hostedBy,
-            eventType,
-            isPaid,
-            eventTags,
-            speakers,
-            price,
-            additionalInformation,
-          }) => {
+          ({ id, title, eventStartTime, eventThumbnail, eventType }) => {
             const date = new Date(eventStartTime);
-            {
-              /* const day = date.getDay();
-            const month = date.getMonth();
-            const dateNumber = date.getDate();
-            const year = date.getFullYear(); */
-            }
             const day = date.toLocaleDateString("en-US", { weekday: "long" });
             const month = date.toLocaleDateString("en-US", { month: "long" });
             const dateNumber = date.getDate();
