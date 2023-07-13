@@ -57,6 +57,7 @@ nav input {
 }
 .event {
   position: relative;
+  cursor: pointer;
 }
 .event .tag {
   background-color: #ffffff;
@@ -83,4 +84,13 @@ nav input {
   padding: 0.3rem 0.7rem;
   font-weight: bold;
   color: #666666;
+}
+.single-event {
+  display: flex;
+}
+.main-info {
+  width: 55%;
+}
+.single-event img {
+  width: 50%;
 }

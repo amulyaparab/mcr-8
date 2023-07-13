@@ -1,6 +1,7 @@
 import { data } from "../Database/data";
-
+import { useNavigate } from "react-router-dom";
 export const Home = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="header">
@@ -31,7 +32,7 @@ export const Home = () => {
             price,
             additionalInformation,
           }) => (
-            <div className="event">
+            <div className="event" onClick={() => navigate(`/event/${id}`)}>
               <p className="tag">{eventType}</p>
               <img src={eventThumbnail} alt={title} />
               <p>{eventStartTime}</p>
