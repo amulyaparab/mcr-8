@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import { data } from "../Database/data";
 
 const DataContext = createContext();
@@ -18,11 +18,22 @@ export const DataProvider = ({ children }) => {
           ...state,
           filteredData: state.data.filter(
             (data) =>
-              data.title.toLowerCase().includes(action.payload.toLowerCase()) ||
+              data.title
+                .toLowerCase()
+                .includes(action.payload.toLowerCase().trim()) ||
               data.eventTags
                 .join("")
                 .toLowerCase()
-                .includes(action.payload.toLowerCase())
+                .includes(action.payload.toLowerCase().trim())
+          ),
+        };
+      case "RSVP":
+        return {
+          ...state,
+          filteredData: state.filteredData.map((event) =>
+            event.id === action.payload
+              ? { ...event, rsvp: true }
+              : { ...event, rsvp: false }
           ),
         };
       default:
@@ -36,8 +47,9 @@ export const DataProvider = ({ children }) => {
     searchVal: "",
   };
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [showRSVP, setShowRSVP] = useState(false);
   return (
-    <DataContext.Provider value={{ state, dispatch }}>
+    <DataContext.Provider value={{ state, dispatch, showRSVP, setShowRSVP }}>
       {children}
     </DataContext.Provider>
   );

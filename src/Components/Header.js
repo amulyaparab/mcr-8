@@ -1,11 +1,13 @@
 import meetup from "../Assets/meetup.svg";
 import { useData } from "../Contexts/DataProvider";
+import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
   const { dispatch } = useData();
+  const navigate = useNavigate();
   return (
     <nav>
-      <img src={meetup} alt="meetup" />
+      <img src={meetup} alt="meetup" onClick={() => navigate("/")} />
       <input
         placeholder="Search by title and tags"
         onChange={(event) =>

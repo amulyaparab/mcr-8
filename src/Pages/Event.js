@@ -1,7 +1,10 @@
 import { useParams } from "react-router-dom";
 import { data } from "../Database/data";
+import { useData } from "../Contexts/DataProvider";
+import { RSVPModal } from "../Components/RSVPModal";
 export const Event = () => {
   const { eventId } = useParams();
+  const { showRSVP, setShowRSVP } = useData();
   const findEvent = data.meetups.find((event) => event.id === eventId);
   return (
     <div className="single-event">
@@ -11,16 +14,16 @@ export const Event = () => {
           Hosted By: <strong>{findEvent?.hostedBy}</strong>
         </p>
         <img src={findEvent?.eventThumbnail} alt={findEvent?.title} />
-        <h4>Details:</h4>
-        <p>{findEvent?.eventDescription}</p>
-        <h4>Additional Information:</h4>
+        <h2>Details:</h2>
+        <p className="details">{findEvent?.eventDescription}</p>
+        <h2>Additional Information:</h2>
         <p>Dress code: {findEvent?.additionalInformation?.dressCode}</p>
         <p>
           Age Restrictions: {findEvent?.additionalInformation?.ageRestrictions}
         </p>
-        <h4>Event Tags:</h4>
+        <h2>Event Tags:</h2>
         {findEvent?.eventTags?.map((tag) => (
-          <p>{tag}</p>
+          <p className="event-tag">{tag}</p>
         ))}
       </div>
       <div>
@@ -31,18 +34,23 @@ export const Event = () => {
           <p>{findEvent?.address}</p>
           <p>₹ {findEvent?.price}</p>
         </div>
-        <div>
-          <h4>Speakers:</h4>
-          {findEvent?.speakers?.map(({ name, image, designation }) => (
-            <div>
-              <img src={image} alt={name} />
-              <p>{name}</p>
-              <p>{designation}</p>
-            </div>
-          ))}
-        </div>
-        <button>RSVP</button>
+        {findEvent.speakers.length ? (
+          <div className="speakers">
+            <h2>Speakers:</h2>
+            {findEvent?.speakers?.map(({ name, image, designation }) => (
+              <div>
+                <img src={image} alt={name} />
+                <p>{name}</p>
+                <p>{designation}</p>
+              </div>
+            ))}
+          </div>
+        ) : null}
+        <button onClick={() => setShowRSVP(true)}>
+          {findEvent?.rsvp ? "Already RSVPed" : "RSVP"}
+        </button>
       </div>
+      {showRSVP && !findEvent?.rsvp && <RSVPModal eventId={findEvent?.id} />}
     </div>
   );
 };
