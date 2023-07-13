@@ -28,7 +28,6 @@ export const DataProvider = ({ children }) => {
           ),
         };
       case "RSVP":
-        console.log(action.payload);
         return {
           ...state,
           filteredData: state.filteredData.map((event) =>

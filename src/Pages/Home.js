@@ -55,7 +55,6 @@ export const Home = () => {
               timeStyle: "short",
             });
 
-            console.log(date, "daate");
             return (
               <div className="event" onClick={() => navigate(`/event/${id}`)}>
                 <p className="tag">{eventType}</p>

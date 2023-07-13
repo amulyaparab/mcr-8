@@ -2,14 +2,21 @@ import { useParams } from "react-router-dom";
 import { data } from "../Database/data";
 import { useData } from "../Contexts/DataProvider";
 import { RSVPModal } from "../Components/RSVPModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export const Event = () => {
   const { eventId } = useParams();
   const { showRSVP, setShowRSVP, state } = useData();
   const findEvent = state.filteredData.find((event) => event.id === eventId);
-  const date = new Date(findEvent?.eventEndTime)?.getFullYear();
+  const date = new Date(findEvent?.eventEndTime);
   const currDate = new Date();
-  console.log(currDate);
+
+  const [isEventOld, setIsEventOld] = useState(false);
+  useEffect(() => {
+    if (date < currDate) {
+      setIsEventOld(true);
+    }
+  }, []);
+
   return (
     <div className="single-event">
       <div className="main-info">
@@ -50,9 +57,11 @@ export const Event = () => {
             ))}
           </div>
         ) : null}
-        <button onClick={() => setShowRSVP(true)}>
-          {findEvent?.rsvp ? "Already RSVPed" : "RSVP"}
-        </button>
+        {!isEventOld && (
+          <button onClick={() => setShowRSVP(true)}>
+            {findEvent?.rsvp ? "Already RSVPed" : "RSVP"}
+          </button>
+        )}
       </div>
       {showRSVP && !findEvent?.rsvp && <RSVPModal eventId={findEvent?.id} />}
     </div>
