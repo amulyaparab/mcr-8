@@ -9,7 +9,7 @@ export const Event = () => {
   const findEvent = state.filteredData.find((event) => event.id === eventId);
   const date = new Date(findEvent?.eventEndTime)?.getFullYear();
   const currDate = new Date();
-  console.log(date);
+  console.log(currDate);
   return (
     <div className="single-event">
       <div className="main-info">
