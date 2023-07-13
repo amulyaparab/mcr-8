@@ -27,17 +27,10 @@ export const RSVPModal = ({ eventId }) => {
           Email:
           <input type="email" required />
         </label>
-        {!findEvent?.isPaid && (
+        {!findEvent?.isPaid && !findEvent?.price === "Free" && (
           <p>* You have to make the payment at the venue</p>
         )}
-        <button
-        // onClick={() => {
-        //   setShowRSVP(false);
-        //   dispatch({ type: "RSVP", payload: eventId });
-        // }}
-        >
-          RSVP
-        </button>
+        <button>RSVP</button>
       </form>
     </div>
   );
