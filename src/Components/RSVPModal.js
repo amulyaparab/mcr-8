@@ -5,12 +5,12 @@ export const RSVPModal = ({ eventId }) => {
   const findEvent = state.filteredData.find((event) => event.id === eventId);
   return (
     <div className="overlay">
-      <div className="rsvp-form ">
+      <div className="rsvp-form">
         <i
           class="fa-solid fa-circle-xmark"
           onClick={() => setShowRSVP(false)}
         ></i>
-        <h4>Complete Your RSVP</h4>
+        <h2>Complete Your RSVP</h2>
         <p>Fill in your personal information.</p>
         <label>
           Name:
