@@ -96,9 +96,16 @@ nav input {
 .details {
   width: 70%;
 }
-.speakers img {
-  height: 200px;
+.speakers {
+  display: flex;
+}
+.speaker {
   width: 100px;
+  height: 100px;
+  padding: 5rem 0;
+}
+.speaker img {
+  height: auto;
   border-radius: 50%;
 }
 .event-tag {
@@ -108,6 +115,11 @@ nav input {
   padding: 0.2rem 0.8rem;
   border-radius: 30px;
   color: #ffffff;
+}
+.side-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
 }
 button {
   background-color: #ff6962;

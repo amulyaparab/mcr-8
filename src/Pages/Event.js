@@ -2,10 +2,14 @@ import { useParams } from "react-router-dom";
 import { data } from "../Database/data";
 import { useData } from "../Contexts/DataProvider";
 import { RSVPModal } from "../Components/RSVPModal";
+import { useState } from "react";
 export const Event = () => {
   const { eventId } = useParams();
-  const { showRSVP, setShowRSVP } = useData();
-  const findEvent = data.meetups.find((event) => event.id === eventId);
+  const { showRSVP, setShowRSVP, state } = useData();
+  const findEvent = state.filteredData.find((event) => event.id === eventId);
+  const date = new Date(findEvent?.eventEndTime)?.getFullYear();
+  const currDate = new Date();
+  console.log(date);
   return (
     <div className="single-event">
       <div className="main-info">
@@ -26,7 +30,7 @@ export const Event = () => {
           <p className="event-tag">{tag}</p>
         ))}
       </div>
-      <div>
+      <div className="side-info">
         <div>
           <p>
             {findEvent?.eventStartTime} to {findEvent?.eventEndTime}
@@ -38,7 +42,7 @@ export const Event = () => {
           <div className="speakers">
             <h2>Speakers:</h2>
             {findEvent?.speakers?.map(({ name, image, designation }) => (
-              <div>
+              <div className="speaker">
                 <img src={image} alt={name} />
                 <p>{name}</p>
                 <p>{designation}</p>

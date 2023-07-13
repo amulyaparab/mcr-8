@@ -28,6 +28,7 @@ export const DataProvider = ({ children }) => {
           ),
         };
       case "RSVP":
+        console.log(action.payload);
         return {
           ...state,
           filteredData: state.filteredData.map((event) =>
@@ -42,12 +43,13 @@ export const DataProvider = ({ children }) => {
   };
   const initialState = {
     data: data.meetups,
-    filteredData: data.meetups,
+    filteredData: data.meetups.map((event) => ({ ...event, rsvp: false })),
     sortType: "Both",
     searchVal: "",
   };
   const [state, dispatch] = useReducer(reducer, initialState);
   const [showRSVP, setShowRSVP] = useState(false);
+
   return (
     <DataContext.Provider value={{ state, dispatch, showRSVP, setShowRSVP }}>
       {children}

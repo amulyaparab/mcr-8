@@ -39,14 +39,34 @@ export const Home = () => {
             speakers,
             price,
             additionalInformation,
-          }) => (
-            <div className="event" onClick={() => navigate(`/event/${id}`)}>
-              <p className="tag">{eventType}</p>
-              <img src={eventThumbnail} alt={title} />
-              <p>{eventStartTime}</p>
-              <h4>{title}</h4>
-            </div>
-          )
+          }) => {
+            const date = new Date(eventStartTime);
+            {
+              /* const day = date.getDay();
+            const month = date.getMonth();
+            const dateNumber = date.getDate();
+            const year = date.getFullYear(); */
+            }
+            const day = date.toLocaleDateString("en-US", { weekday: "long" });
+            const month = date.toLocaleDateString("en-US", { month: "long" });
+            const dateNumber = date.getDate();
+            const year = date.getFullYear();
+            const time = date.toLocaleTimeString("en-US", {
+              timeStyle: "short",
+            });
+
+            console.log(date, "daate");
+            return (
+              <div className="event" onClick={() => navigate(`/event/${id}`)}>
+                <p className="tag">{eventType}</p>
+                <img src={eventThumbnail} alt={title} />
+                <p>
+                  {day} {month} {dateNumber} {year} {time} IST
+                </p>
+                <h4>{title}</h4>
+              </div>
+            );
+          }
         )}
       </div>
     </>
