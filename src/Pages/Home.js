@@ -22,28 +22,32 @@ export const Home = () => {
         </select>
       </div>
       <div className="events">
-        {state.filteredData.map(
-          ({ id, title, eventStartTime, eventThumbnail, eventType }) => {
-            const date = new Date(eventStartTime);
-            const day = date.toLocaleDateString("en-US", { weekday: "long" });
-            const month = date.toLocaleDateString("en-US", { month: "long" });
-            const dateNumber = date.getDate();
-            const year = date.getFullYear();
-            const time = date.toLocaleTimeString("en-US", {
-              timeStyle: "short",
-            });
+        {state.filteredData.length ? (
+          state.filteredData.map(
+            ({ id, title, eventStartTime, eventThumbnail, eventType }) => {
+              const date = new Date(eventStartTime);
+              const day = date.toLocaleDateString("en-US", { weekday: "long" });
+              const month = date.toLocaleDateString("en-US", { month: "long" });
+              const dateNumber = date.getDate();
+              const year = date.getFullYear();
+              const time = date.toLocaleTimeString("en-US", {
+                timeStyle: "short",
+              });
 
-            return (
-              <div className="event" onClick={() => navigate(`/event/${id}`)}>
-                <p className="tag">{eventType}</p>
-                <img src={eventThumbnail} alt={title} />
-                <p>
-                  {day} {month} {dateNumber} {year} {time} IST
-                </p>
-                <h4>{title}</h4>
-              </div>
-            );
-          }
+              return (
+                <div className="event" onClick={() => navigate(`/event/${id}`)}>
+                  <p className="tag">{eventType}</p>
+                  <img src={eventThumbnail} alt={title} />
+                  <p>
+                    {day} {month} {dateNumber} {year} {time} IST
+                  </p>
+                  <h4>{title}</h4>
+                </div>
+              );
+            }
+          )
+        ) : (
+          <h2>No Events Found.</h2>
         )}
       </div>
     </>
