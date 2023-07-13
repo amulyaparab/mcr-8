@@ -1,7 +1,9 @@
+import meetup from "../Assets/meetup.svg";
+
 export const Header = () => {
   return (
     <nav>
-      <h1>Meet Up</h1>
+      <img src={meetup} alt="meetup" />
       <input placeholder="Search by title and tags" />
     </nav>
   );
